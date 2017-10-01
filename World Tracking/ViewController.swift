@@ -31,15 +31,34 @@ class ViewController: UIViewController {
 
     @IBAction func add(_ sender: Any) {
         let node = SCNNode()
-        node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        // node.geometry = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.03)
+        // node.geometry = SCNCapsule(capRadius: 0.1, height: 0.3)
+        // node.geometry = SCNCone(topRadius: 0, bottomRadius: 0.1, height: 0.2)
+        // node.geometry = SCNCylinder(radius: 0.1, height: 0.2)
+        // node.geometry = SCNSphere(radius: 0.05)
+        // node.geometry = SCNTube(innerRadius: 0.02, outerRadius: 0.04, height: 0.2)
+        // node.geometry = SCNTorus(ringRadius: 0.2, pipeRadius: 0.05)
+        // node.geometry = SCNPlane(width: 0.1, height: 0.08)
+        // node.geometry = SCNPyramid(width: 0.1, height: 0.1, length: 0.1)
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: 0.2))
+        path.addLine(to: CGPoint(x: 0.2, y: 0.3))
+        path.addLine(to: CGPoint(x: 0.4, y: 0.2))
+        path.addLine(to: CGPoint(x: 0.4, y: 0))
+        let shape = SCNShape(path: path, extrusionDepth: 0.2)
+        node.geometry = shape
+        
+        
         node.geometry?.firstMaterial?.specular.contents = UIColor.white
         node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         
-        let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
+        /*let x = randomNumbers(firstNum: -0.3, secondNum: 0.3)
         let y = randomNumbers(firstNum: -0.3, secondNum: 0.3)
         let z = randomNumbers(firstNum: -0.3, secondNum: 0.3)
-        
-        node.position = SCNVector3(x, y, z)
+        */
+        node.position = SCNVector3(0, 0, -0.7)
         self.sceneView.scene.rootNode.addChildNode(node)
     }
     
